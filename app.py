@@ -31,11 +31,19 @@ def dna_to_rna(seq):
 
 def translate(seq):
     protein = []
+    start = False
 
     for i in range(0, len(seq), 3):
         codon = seq[i:i+3]
+
         if len(codon) < 3:
             break
+
+        if codon == "AUG":
+            start = True
+
+        if not start:
+            continue
 
         amino = CODON_TABLE.get(codon, "?")
 
